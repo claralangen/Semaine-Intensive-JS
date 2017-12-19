@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Jaj</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="docs/data.js"></script>
+</head>
+
+<body>
+  <ul class="listGenre">
+    <li class="btnGenre" data-genre="Action">Action</li>
+    <li class="btnGenre" data-genre="Animation">Animation</li>
+    <li class="btnGenre" data-genre="Comedy">Comedy</li>
+    <li class="btnGenre" data-genre="Horror / Thriller">Horror / Thriller</li>
+    <li type="button" class="btnAll" data-genre="All">all</li>
+  </ul>
+  <div class="movies"></div>
+
+
+  <script>
+
+  var movies = document.querySelector(".movies");
+
+  var btnGenre = document.querySelectorAll(".btnGenre");
+
+  var all = document.querySelector('.btnAll')
+
+
+
+
+  for (var i=0; i < data.films.length; i++){ //on select le dictionnaire films
+    console.log("ca marche");
+
+    movies.innerHTML +='<video class="video" controls>'+'<source src="docs/'+ data.films[i].src +'" type ="video/mp4">'+'</video>'; //on écrit sur le html + On récup tout les src de films
+
+  };
+
+  var movie2 = document.querySelectorAll('.video');
+
+  for (var i = 0; i < movie2.length; i++) {
+    console.log(movie2[i]);
+     //movie2 = movie2[i];
+  }
+
+  for (var i = 0; i < btnGenre.length; i++) {
+    btnGenre[i].addEventListener('click', function() {
+      for (var i = 0; i < data.films.length; i++) {
+        if (data.films[i].category !== this.dataset.genre) {
+          movie2[i].style.display = 'none';
+        } else {
+          movie2[i].style.display = '';
+        }
+      }
+    })
+  }
+
+  all.addEventListener('click', function() {
+    for (var i = 0; i < data.films.length; i++) {
+      if (data.films.category === this.dataset.gentre) {
+        movie2[i].style.display = 'block';
+      }
+    }
+  })
+
+
+  </script>
+
+</body>
+
+</html>
